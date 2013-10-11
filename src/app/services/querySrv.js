@@ -40,6 +40,7 @@ function (angular, _, config, kbn) {
     var _query = {
       alias: '',
       pin: false,
+      active: true,
       type: 'lucene'
     };
 
@@ -214,11 +215,11 @@ function (angular, _, config, kbn) {
       switch(config.mode)
       {
       case 'all':
-        return self.ids;
+        return _.pluck(_.where(self.list,{active:true}),'id');
       case 'pinned':
-        return _.pluck(_.where(self.list,{pin:true}),'id');
+        return _.pluck(_.where(self.list,{pin:true, active:true}),'id');
       case 'unpinned':
-        return _.difference(self.ids,_.pluck(_.where(self.list,{pin:true}),'id'));
+        return _.difference(self.ids,_.pluck(_.where(self.list,{pin:true, active:true}),'id'));
       case 'selected':
         return _.intersection(self.ids,config.ids);
       default:
