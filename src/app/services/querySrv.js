@@ -219,7 +219,7 @@ function (angular, _, config, kbn) {
       case 'pinned':
         return _.pluck(_.where(self.list,{pin:true, active:true}),'id');
       case 'unpinned':
-        return _.difference(self.ids,_.pluck(_.where(self.list,{pin:true, active:true}),'id'));
+        return _.pluck(_.where(self.list,{pin:false, active:true}),'id');
       case 'selected':
         return _.intersection(self.ids,config.ids);
       default:
