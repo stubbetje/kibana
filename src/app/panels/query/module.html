@@ -1,10 +1,9 @@
 <div ng-controller='query' ng-init="init()" class="query-panel">
   <style>
       .pinned.selected {
-        border: 3px solid;
       }
       .pinned.unselected {
-        border: 0px solid;
+        opacity: 0.5;
       }
     </style>
   <div ng-repeat="id in (unPinnedQueries = (querySrv.ids|pinnedQuery:false))" ng-class="{'short-query': unPinnedQueries.length>1}">
